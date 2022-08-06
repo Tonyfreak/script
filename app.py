@@ -28,11 +28,7 @@ def adder():
 
   conn = psycopg2.connect(DATABASE_URL, sslmode='require')
   cur = conn.cursor()
-  cur.execute(f"insert into queue (target) values ('{url}')")
-  conn.commit()
-
-  cur.close()
-  conn.close()
+  subprocess.call(['bash','/app/commands.sh',url])
 
   return render_template("index.html", info="Added to queue !")
   
